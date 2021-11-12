@@ -2,15 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo_demo/model/todo.dart';
 
 class DatabaseService {
-  CollectionReference todosCollection =
+  static CollectionReference todosCollection =
       FirebaseFirestore.instance.collection("Todos");
 
+  
   Future createNewTodo(String title) async {
     return await todosCollection.add({
       "title": title,
       "isComplet": false,
     });
   }
+  
+  static Future onBoardingUserWithEmailId(String emailId) async {
+    return await todosCollection.add({"email-id": emailId, 
+      "isComplet": false,});
+  }
+
 
   Future completTask(uid) async {
     await todosCollection.doc(uid).update({"isComplet": true});

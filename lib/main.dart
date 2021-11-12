@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_demo/loading.dart';
-import 'package:todo_demo/todo_list.dart';
+import 'package:todo_demo/view/todo_list.dart';
+import 'package:todo_demo/view/intro_screen.dart';
+import 'package:todo_demo/view/user_on_boarding.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,14 +19,16 @@ class MyApp extends StatelessWidget {
           );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Loading();
+          return Center(
+        child: CircularProgressIndicator(),
+      );
         }
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: TodoList(),
+          home: TodoIntroScreen(),
           theme: ThemeData(
-            scaffoldBackgroundColor: Colors.grey[900],
-            primarySwatch: Colors.pink,
+            // scaffoldBackgroundColor: Colors.grey[900],
+            primarySwatch: Colors.indigo,
           ),
         );
       },
